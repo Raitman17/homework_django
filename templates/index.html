@@ -1,18 +1,61 @@
 {% extends "base_generic.html" %}
 {% block content %}
-  <h1>Hotel Home</h1>
+<style>
+  h1 {
+    color: #333;
+    text-align: center;
+  }
 
-  <a href="{% url 'book_by_date' %}">посмотреть номера по дате</a>
-  {% if hotels_list %}
-  <ul>
-    {% for hotel in hotels_list %}
-    <li style="font-size: 28px;">
-      <a href="{% url 'hotel' %}?id={{hotel.id}}">{{ hotel.name }}</a> rating: {{ hotel.rating }}
-    </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-    <p>There are no hotels for now..</p>
-  {% endif %}  
+  .hotel_ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+  }
+  .hotel_li {
+    display: block;
+    margin-left: 2%;
+    border: 2px solid black;
+    border-radius: 10px;
+  }
 
+  .hotel-info {
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  padding: 10px;
+  }
+  img{
+    width: 350px;
+    height: 250px;
+    padding: 10px;
+  }
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<h1>Отели</h1>
+
+{% if hotels_list %}
+<ul class="hotel_ul">
+  {% for hotel in hotels_list %}
+  <li class="hotel_li">
+    <a href="{% url 'hotel' %}?id={{hotel.id}}" style="text-decoration: none; color: black;">
+      <div class="hotel-info">
+        {{ hotel.name }} {{ hotel.rating }}
+      </div>
+      <img src="{{ hotel.image }}" alt="фото нету">
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>There are no hotels for now..</p>
+{% endif %}  
 {% endblock %}

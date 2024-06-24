@@ -24,7 +24,7 @@ def create_viewset_test(model_class, url: str, creation_attrs: dict):
         def setUp(self):
             """Параметры."""
             self.client = APIClient()
-            self.hotel_obj = Hotel.objects.create(name='A', address='abc', rating=4.1)
+            self.hotel_obj = Hotel.objects.create(name='A', rating=4.1)
             self.room_obj = Room.objects.create(category='business', floor=10, number=111, hotel=self.hotel_obj)
             self.user = User.objects.create_user(username='user', password='user')
             self.superuser = User.objects.create_user(
@@ -119,7 +119,7 @@ def create_viewset_test(model_class, url: str, creation_attrs: dict):
 
 HotelViewSetTest = create_viewset_test(
     Hotel, '/rest/hotels/',
-    {'name': 'A', 'address': 'abc', 'rating': 4.1}
+    {'name': 'A', 'rating': 4.1}
 )
 
 ServiceViewSetTest = create_viewset_test(

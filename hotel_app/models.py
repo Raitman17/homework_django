@@ -12,6 +12,7 @@ from django.db.models import Q
 from django.utils.translation import gettext_lazy as _
 
 NAMES_MAX_LENGTH = 100
+IMAGE_MAX_LENGTH = 500
 ADDRESS_MAX_LENGTH = 250
 DESCRIPTION_MAX_LENGTH = 1000
 
@@ -165,6 +166,27 @@ class ModifiedMixin(models.Model):
         abstract = True
 
 
+class Address(UUIDMixin, CreatedMixin, ModifiedMixin):
+    """Модель для адресса."""
+
+    city = models.TextField(max_length=ADDRESS_MAX_LENGTH, null=False, blank=False)
+    street = models.TextField(max_length=ADDRESS_MAX_LENGTH, null=False, blank=False)
+    number = models.IntegerField(null=False, blank=False, validators=[check_positive])
+
+    def __str__(self) -> str:
+        """Метод строкового представления.
+
+        Returns:
+            str: строка
+        """
+        return f'{self.city}/{self.street}/{self.number}'
+
+    class Meta:
+        db_table = '"hotel"."address"'
+        verbose_name = _('address')
+        verbose_name_plural = _('address')
+
+
 class HotelManager(models.Manager):
     """Менеджер для отеля."""
 
@@ -191,12 +213,13 @@ class Hotel(UUIDMixin, CreatedMixin, ModifiedMixin):
     """Модель отеля."""
 
     name = models.TextField(_('name'), null=False, blank=False, max_length=NAMES_MAX_LENGTH)
-    address = models.TextField(_('address'), null=True, blank=True, max_length=ADDRESS_MAX_LENGTH)
+    hotel_address = models.ForeignKey(Address, verbose_name='address', on_delete=models.CASCADE, null=True, blank=True)
     rating = models.DecimalField(
         _('rating'), decimal_places=1,
         max_digits=2, validators=[MaxValueValidator(5), MinValueValidator(0)],
         default=0,
     )
+    image = models.TextField(_('image'), null=True, blank=True, max_length=IMAGE_MAX_LENGTH)
 
     services = models.ManyToManyField(
         'Service', through='HotelService', verbose_name=_('services')
@@ -337,6 +360,7 @@ class Room(UUIDMixin, CreatedMixin, ModifiedMixin):
         default=0, validators=[MinValueValidator(0)],
         max_digits=11, decimal_places=2
     )
+    image = models.TextField(_('image'), null=True, blank=True, max_length=IMAGE_MAX_LENGTH)
 
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, verbose_name=_('hotel'))
     clients = models.ManyToManyField('Client', through='Reserve', verbose_name=_('clients'))

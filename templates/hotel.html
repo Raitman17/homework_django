@@ -1,17 +1,58 @@
 {% extends "base_generic.html" %}
 {% block content %}
-  <h1>Страничка отеля...</h1>
+<style>
+  h1 {
+    color: #333;
+    text-align: center;
+  }
 
+  .room_ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+  }
+  .room_li {
+    display: block;
+    margin-left: 2%;
+    border: 2px solid black;
+    border-radius: 10px;
+  }
 
+  .hotel-info {
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  padding: 10px;
+  }
+  img{
+    width: 350px;
+    height: 250px;
+    padding: 10px;
+  }
+
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
   {% if hotel %}
     <h1> {{hotel.name}} </h1>
     {% if rooms %}
-        <ul>
-        {% for room in rooms %}
-            <li>
-            <a href="{% url 'room' %}?id={{room.id}}">{{ room }}</a>
-            </li>
-        {% endfor %}
+        <ul class="room_ul">
+          {% for room in rooms %}
+          <li class="room_li">
+            <a href="{% url 'room' %}?id={{room.id}}" style="text-decoration: none; color: black;">
+              <div class="hotel-info">
+                {{ room }}
+              </div>
+              <img src="{{ room.image }}" alt="фото нету">
+            </a>
+          </li>
+          {% endfor %}
         </ul>
     {% else %}
     <p>Тут пусто</p>

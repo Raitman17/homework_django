@@ -29,16 +29,16 @@ def create_model_test(model_class, valid_attrs: dict, bunch_of_invalid_attrs: tu
 
         def test_successful_creation(self):
             if model_class == Room:
-                valid_attrs['hotel'] = Hotel.objects.create(name='abc', address='abc', rating=4.4)
+                valid_attrs['hotel'] = Hotel.objects.create(name='abc', rating=4.4)
             model_class.objects.create(**valid_attrs)
     return ModelTest
 
 
 HotelModelTest = create_model_test(
     Hotel,
-    {'name': 'abc', 'address': 'abc', 'rating': 4.4},
-    ({'name': 'abc', 'address': 'abc', 'rating': -4.4},
-     {'name': 'abc', 'address': 'abc', 'rating': 5.4})
+    {'name': 'abc', 'rating': 4.4},
+    ({'name': 'abc', 'rating': -4.4},
+     {'name': 'abc', 'rating': 5.4})
 )
 ServiceModelTest = create_model_test(Service, {'name': 'abc'})
 RoomModelTest = create_model_test(
@@ -76,7 +76,7 @@ class ReserveTest(TestCase):
         """Параметры."""
         user = User.objects.create(username='abc', first_name='abc', last_name='abc', password='abc')
         self.client = Client.objects.create(user=user)
-        hotel = Hotel.objects.create(name='abc', address='abc', rating=4.4)
+        hotel = Hotel.objects.create(name='abc', rating=4.4)
         self.room = Room.objects.create(category='double', floor=4, number=5, hotel=hotel)
         self.reserve_data = {
                 'user': self.client,

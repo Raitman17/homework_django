@@ -19,7 +19,7 @@ class TestReserve(TestCase):
         self.hotel_client = Client.objects.create(user=self.user)
         self.test_client.force_login(self.user)
 
-        hotel = Hotel.objects.create(name='abc', address='abc', rating=4.4)
+        hotel = Hotel.objects.create(name='abc', rating=4.4)
         self.room = Room.objects.create(category='business', floor=10, number=111, hotel=hotel, cost=10)
         self.page_url = f'{self._reserve_page}?id={self.room.id}'
 

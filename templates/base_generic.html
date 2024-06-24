@@ -2,18 +2,60 @@
 <html lang="en">
 <head>
   {% block title %}<title>Hotel</title>{% endblock %}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6e6e6;
+    }
+   .sidebar-nav {
+      padding: 0;
+      width: 100%;
+      margin: 0;
+      background-color: #cbcdcf;
+      top: 0;
+      left: 0;
+    }
+   .sidebar-nav li {
+      display: inline-flex;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+   .profile_li {
+    float: right;
+   }
+   .sidebar-nav a {
+      display: block;
+      color: black;
+      text-decoration: none;
+    }
+   .sidebar-nav a:hover {
+      background-color: #949a9e;
+    }
+   .content {
+      margin-left: 200px; /* Adjust based on the width of your sidebar */
+      padding: 20px;
+    }
+   .pagination {
+      margin-top: 20px;
+      text-align: center;
+    }
+   .step-links a {
+      margin-right: 5px;
+    }
+  </style>
 </head>
 
 <body>
   {% block sidebar %}
   <ul class="sidebar-nav">
     <li><a href="{% url 'homepage' %}">Homepage</a></li>
+    <li><a href="{% url 'book_by_date' %}">посмотреть номера по дате</a></li>
     {% if user.is_authenticated %}
-      <li>Hello, <a href="{% url 'profile' %}">{{ user.username }}</a>!</li>
-      <li><a href="{% url 'logout' %}?next={{request.path}}">Log out</a></li>
+      <li class="profile_li"><a href="{% url 'logout' %}?next={{request.path}}">Log out</a></li>
+      <li class="profile_li"><a href="{% url 'profile' %}">{{ user.username }}</a></li>
     {% else %}
-      <li><a href="{% url 'login' %}?next={{request.path}}">Log in</a></li>
-      <li><a href="{% url 'register' %}">Register</a></li>
+      <li class="profile_li"><a href="{% url 'login' %}?next={{request.path}}">Log in</a></li>
+      <li class="profile_li"><a href="{% url 'register' %}">Register</a></li>
     {% endif %}
   </ul>
   {% endblock %}

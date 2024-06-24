@@ -104,7 +104,7 @@ def create_method_instance(url: str, page_name: str, template: str, model, creat
         user = User.objects.create(username='user', password='user')
         Client.objects.create(user=user)
         if model == Room:
-            creation_attrs['hotel'] = Hotel.objects.create(name='abc', address='abc', rating=4.4)
+            creation_attrs['hotel'] = Hotel.objects.create(name='abc', rating=4.4)
 
         # GET without auth
         self.assertEqual(self.client.get(url).status_code, status.HTTP_302_FOUND)
@@ -128,7 +128,7 @@ def create_method_instance(url: str, page_name: str, template: str, model, creat
 
 
 instance_pages = (
-    ('/hotel/', 'hotel', 'hotel.html', Hotel, {'name': 'abc', 'address': 'abc', 'rating': 4.4}),
+    ('/hotel/', 'hotel', 'hotel.html', Hotel, {'name': 'abc', 'rating': 4.4}),
     ('/room/', 'room', 'room.html', Room, {'category': 'double', 'floor': 2, 'number': 201, 'cost': 10}),
     ('/reserve/', 'reserve', 'reserve.html', Room, {'category': 'double', 'floor': 2, 'number': 201, 'cost': 10}),
 )
@@ -142,7 +142,7 @@ class TestDeleteReserve(TestCase):
 
     def setUp(self) -> None:
         """Параметры."""
-        hotel = Hotel.objects.create(name='abc', address='abc', rating=4.4)
+        hotel = Hotel.objects.create(name='abc', rating=4.4)
         room = Room.objects.create(category='business', floor=10, number=111, hotel=hotel)
         self.client = TestClient()
         user = User.objects.create(username='user', password='user')

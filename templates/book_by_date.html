@@ -2,7 +2,6 @@
 {% block content %}
   <h1>Посмотреть номера свободные в определенные даты</h1>
   {% if form_errors %}
-    <h3>Ошибки:</h3>
     <ul>
         {% for msg in form_errors %}
             <li>{{ msg }}</li>

@@ -1,13 +1,42 @@
 {% extends "base_generic.html" %}
 {% block content %}
-  <h1>Страничка номера...</h1>
+<style>
+  .room_h {
+    color: #333;
+    text-align: center;
+  }
 
+  .room_img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+  }
 
-  {% if room %}
-    <h1> {{room}} </h1>
-    <a href="{% url 'reserve' %}?id={{room.id}}">забронировать номер</a>
-  {% else %}
-    <p>Тут пусто</p>
-  {% endif %}  
+  .reserve {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+  }
 
+  .reserve:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<h1 class="room_h">{{ room.hotel }}</h1>
+
+{% if room %}
+  <h1 class="room_h"> {{room}} </h1>
+  <h2 class="room_h">цена/сутки: {{ room.cost }}</h2>
+  <img class="room_img" src="{{ room.image }}" alt="фото нету">
+  <a class="reserve" href="{% url 'reserve' %}?id={{room.id}}">забронировать номер</a>
+{% else %}
+  <p>Тут пусто</p>
+{% endif %}  
 {% endblock %}

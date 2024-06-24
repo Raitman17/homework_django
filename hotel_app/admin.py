@@ -4,8 +4,8 @@ from django import forms
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from .models import (Client, Hotel, HotelService, Reserve, ReserveService,
-                     Room, Service, models)
+from .models import (Address, Client, Hotel, HotelService, Reserve,
+                     ReserveService, Room, Service, models)
 
 
 class HotelAdminForm(forms.ModelForm):
@@ -127,3 +127,10 @@ class ReserveServiceAdmin(admin.ModelAdmin):
     """Администратор модели бронирование-сервис."""
 
     model = ReserveService
+
+
+@admin.register(Address)
+class AddressAdmin(admin.ModelAdmin):
+    """Администратор можеди адресс."""
+
+    model = Address
