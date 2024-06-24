@@ -144,7 +144,7 @@ class CreatedMixin(models.Model):
         _('created'),
         null=True, blank=True,
         default=get_datetime,
-        validators=[check_created,]
+        validators=[check_created, ]
     )
 
     class Meta:
@@ -424,8 +424,8 @@ class Reserve(UUIDMixin, CreatedMixin, ModifiedMixin):
 
     user = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name=_('reserved_user'))
     room = models.ForeignKey(Room, on_delete=models.CASCADE, verbose_name=_('room'), related_name=_('room'))
-    start_date = models.DateField(_('Date, from'), validators=[check_date,])
-    end_date = models.DateField(_('Date, until'), validators=[check_date,])
+    start_date = models.DateField(_('Date, from'), validators=[check_date, ])
+    end_date = models.DateField(_('Date, until'), validators=[check_date, ])
     price = models.DecimalField(
         _('price'), null=True, blank=True,
         default=0, validators=[MinValueValidator(0)],
