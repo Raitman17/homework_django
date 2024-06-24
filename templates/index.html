@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% block content %}
+  <h1>Hotel Home</h1>
+
+  <a href="{% url 'book_by_date' %}">посмотреть номера по дате</a>
+  {% if hotels_list %}
+  <ul>
+    {% for hotel in hotels_list %}
+    <li style="font-size: 28px;">
+      <a href="{% url 'hotel' %}?id={{hotel.id}}">{{ hotel.name }}</a> rating: {{ hotel.rating }}
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no hotels for now..</p>
+  {% endif %}  
+
+{% endblock %}

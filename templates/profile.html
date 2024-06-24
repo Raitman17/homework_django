@@ -1,0 +1,37 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    {% if client_data %}
+        <h5>Your profile data:</h5>
+        <ul>
+            {% for key, value in client_data.items %}
+                <li> {{key}}: {{value}} </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No client data to show..</p>
+    {% endif %}
+
+    <h4> To add funds to your account please use form below: </h4>
+
+    <form action="/profile/" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Add funds">
+    </form>
+
+    {% if reserve %}
+        <h3>Ваши брони:</h3>
+        <ul>
+            {% for val in reserve %}
+                <li> {{ val.room }}: {{ val.start_date}} - {{ val.end_date}} цена: {{ val.price }}</li>
+                <form action="{% url 'delete_reserve' %}?id={{val.id}}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="delete">
+                </form>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Нету броней</p>
+    {% endif %}
+{% endblock %}

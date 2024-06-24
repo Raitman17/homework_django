@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+{% block content %}
+  <h1>Страничка отеля...</h1>
+
+
+  {% if hotel %}
+    <h1> {{hotel.name}} </h1>
+    {% if rooms %}
+        <ul>
+        {% for room in rooms %}
+            <li>
+            <a href="{% url 'room' %}?id={{room.id}}">{{ room }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+    <p>Тут пусто</p>
+    {% endif %}  
+  {% else %}
+    <p>Тут пусто</p>
+  {% endif %}  
+
+{% endblock %}

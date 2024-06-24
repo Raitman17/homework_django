@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+{% block content %}
+  <h1>Страничка номера...</h1>
+
+
+  {% if room %}
+    <h1> {{room}} </h1>
+    <a href="{% url 'reserve' %}?id={{room.id}}">забронировать номер</a>
+  {% else %}
+    <p>Тут пусто</p>
+  {% endif %}  
+
+{% endblock %}

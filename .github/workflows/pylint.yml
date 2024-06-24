@@ -1,0 +1,54 @@
+name: Main test
+on: [push]
+jobs:
+  container-job:
+    name: Tests
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_HOST: 127.0.0.1
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+        ports:
+        - 5432:5432
+    steps:
+    - uses: actions/checkout@v2
+    - name: Python installation
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11
+    - name: Dependencies installation
+      run: |
+        python3 -m pip install --upgrade pip
+        pip install -r tests/requirements.txt
+        chmod +x tests/test.sh
+    - name: Test views
+      run: ./tests/test.sh tests.test_views
+    - name: Test models
+      run: ./tests/test.sh tests.test_models
+    - name: Test api
+      run: ./tests/test.sh tests.test_api
+    - name: Test forms
+      run: ./tests/test.sh tests.test_forms
+    - name: Test registration
+      run: ./tests/test.sh tests.test_registration
+    - name: Test reserve
+      run: ./tests/test.sh tests.test_reserve
+  linter:
+    name: Linter
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10.12
+    - name: Dependencies installation
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit==1.7.2 flake8==3.9.0 flake8-bandit==2.1.2
+    - name: Flake8
+      run: flake8

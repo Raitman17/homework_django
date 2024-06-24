@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+{% block content %}
+  <h1>Посмотреть номера свободные в определенные даты</h1>
+  {% if form_errors %}
+    <h3>Ошибки:</h3>
+    <ul>
+        {% for msg in form_errors %}
+            <li>{{ msg }}</li>
+        {% endfor %}
+    </ul>
+  {% endif %}
+  <form action="/book_by_date/" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="показать">
+  </form>
+
+  {% if rooms %}
+  <ul>
+    {% for room in rooms %}
+    <li>
+      <a href="{% url 'reserve' %}?id={{room.id}}">{{ room }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>Таких нету</p>
+  {% endif %}  
+
+{% endblock %}

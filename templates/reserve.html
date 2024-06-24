@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>{{ room }}</h1>
+    {% if form_errors %}
+        <h3>Ошибки:</h3>
+        <ul>
+            {% for msg in form_errors %}
+                <li>{{ msg }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="{% url 'reserve' %}?id={{ room_id }}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        {% if services %}
+            {% for service in services %}
+                <label><input type="checkbox" name="{{ service }}">{{ service }}</label>
+            {% endfor %}
+        {% endif %}
+        <input type="submit" value="забронировать">
+    </form>
+    {% if reserve_room %}
+        <h2>Занятые даты:</h2>
+        {% for reserve in reserve_room %}
+            <h3>{{ reserve.start_date }} - {{ reserve.end_date }}</h3>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

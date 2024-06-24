@@ -1,0 +1,149 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-07 11:23+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: hotel_app/models.py:20 hotel_app/models.py:24
+msgid "Datetime is bigger than current datetime!"
+msgstr "Дата и время больше текущих!"
+
+#: hotel_app/models.py:28
+msgid "value should be positive"
+msgstr "значение должно быть положительным"
+
+#: hotel_app/models.py:33
+msgid "value should be less than 5"
+msgstr "значение должно быть меньше чем 5"
+
+#: hotel_app/models.py:44
+msgid "created"
+msgstr "создано"
+
+#: hotel_app/models.py:55
+msgid "modified"
+msgstr "изменено"
+
+#: hotel_app/models.py:65 hotel_app/models.py:88
+msgid "name"
+msgstr "имя"
+
+#: hotel_app/models.py:66
+msgid "address"
+msgstr "адрес"
+
+#: hotel_app/models.py:68
+msgid "rating"
+msgstr "рейтинг"
+
+#: hotel_app/models.py:74 hotel_app/models.py:99
+msgid "services"
+msgstr "сервисы"
+
+#: hotel_app/models.py:83 hotel_app/models.py:103 hotel_app/models.py:136
+msgid "hotel"
+msgstr "отель"
+
+#: hotel_app/models.py:84 hotel_app/models.py:90
+msgid "hotels"
+msgstr "отели"
+
+#: hotel_app/models.py:98 hotel_app/models.py:104
+msgid "service"
+msgstr "сервис"
+
+#: hotel_app/models.py:105
+msgid "description"
+msgstr "описание"
+
+#: hotel_app/models.py:113
+msgid "Relationship hotel service"
+msgstr "связь отель сервис"
+
+#: hotel_app/models.py:114
+msgid "Relationships hotel service"
+msgstr "связи отель сервис"
+
+#: hotel_app/models.py:118
+msgid "apartment"
+msgstr "апартаменты"
+
+#: hotel_app/models.py:119
+msgid "business"
+msgstr "бизнес"
+
+#: hotel_app/models.py:120
+msgid "de luxe"
+msgstr "де люкс"
+
+#: hotel_app/models.py:121
+msgid "duplex"
+msgstr "двухэтажный"
+
+#: hotel_app/models.py:122
+msgid "standart"
+msgstr "стандарт"
+
+#: hotel_app/models.py:123
+msgid "studio"
+msgstr "студия"
+
+#: hotel_app/models.py:124
+msgid "suite"
+msgstr "люкс"
+
+#: hotel_app/models.py:125
+msgid "family"
+msgstr "семейный"
+
+#: hotel_app/models.py:126
+msgid "single"
+msgstr "одноместный"
+
+#: hotel_app/models.py:127
+msgid "double"
+msgstr "двухместный"
+
+#: hotel_app/models.py:132
+msgid "category"
+msgstr "категория"
+
+#: hotel_app/models.py:133
+msgid "floor"
+msgstr "этаж"
+
+#: hotel_app/models.py:134
+msgid "number"
+msgstr "номер"
+
+#: hotel_app/models.py:144
+msgid "room"
+msgstr "номер"
+
+#: hotel_app/models.py:145
+msgid "rooms"
+msgstr "номера"
+
+#: hotel_app/models.py:156
+msgid "client"
+msgstr "клиент"
+
+#: hotel_app/models.py:157
+msgid "clients"
+msgstr "клиенты"
